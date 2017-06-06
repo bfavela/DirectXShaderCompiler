@@ -34,7 +34,14 @@ template <class T> bool ReverseIterate<T>::value = true;
 
 namespace llvm {
 
-class SmallPtrSetIteratorImpl;
+#if LLVM_ENABLE_ABI_BREAKING_CHECKS
+template <class T = void> struct ReverseIterate { static bool value; };
+#if LLVM_ENABLE_REVERSE_ITERATION
+template <class T> bool ReverseIterate<T>::value = true;
+#else
+template <class T> bool ReverseIterate<T>::value = false;
+#endif
+#endif
 
 /// SmallPtrSetImplBase - This is the common code shared among all the
 /// SmallPtrSet<>'s, which is almost everything.  SmallPtrSet has two modes, one
@@ -379,6 +386,11 @@ public:
     if (ReverseIterate<bool>::value)
       return iterator(CurArray, CurArray);
 #endif
+    return endPtr();
+  }
+
+private:
+  inline iterator endPtr() const {
     return iterator(EndPointer(), EndPointer());
   }
 };
