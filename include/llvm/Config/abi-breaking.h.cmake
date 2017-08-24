@@ -43,4 +43,6 @@ __attribute__((weak, visibility ("hidden"))) int *VerifyDisableABIBreakingChecks
 }
 #endif // _MSC_VER
 
+#endif // LLVM_DISABLE_ABI_BREAKING_CHECKS_ENFORCING
+
 #endif

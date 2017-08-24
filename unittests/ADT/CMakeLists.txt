@@ -28,7 +28,6 @@ set(ADTSources
   PointerIntPairTest.cpp
   PointerUnionTest.cpp
   PostOrderIteratorTest.cpp
-  ReverseIterationTest.cpp
   SCCIteratorTest.cpp
   SmallPtrSetTest.cpp
   SmallStringTest.cpp
