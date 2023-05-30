@@ -1717,7 +1717,7 @@ bool SROAGlobalAndAllocas(HLModule &HLM, bool bHasDbgInfo) {
     // If sizes are equal, tiebreak with alphabetically lesser at higher priority
     return sz0 < sz1 || (sz0 == sz1 && isa<GlobalVariable>(a0) &&
                          isa<GlobalVariable>(a1) &&
-                         a0->getName() > a1->getName());
+                         a0->stripPointerCasts()->getName() > a1->stripPointerCasts()->getName());
   };
 
   std::priority_queue<Value *, std::vector<Value *>,
